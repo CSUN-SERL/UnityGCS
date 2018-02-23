@@ -1,0 +1,80 @@
+﻿using System;
+using FeedScreen.Experiment.Missions.Broadcasts.Events;
+using Missions.Broadcasts.Events.EventArgs;
+using Missions.Queries;
+using UnityEngine;
+
+namespace Missions.Endpoint
+{
+    public class SocketEventManager : MonoBehaviour
+    {
+        public static event EventHandler<StringEventArgs> DataRecieved;
+
+        public static void OnDataRecieved(StringEventArgs e)
+        {
+            var handler = DataRecieved;
+            if (handler != null) handler(null, e);
+        }
+
+        public static event EventHandler<QueryEventArgs> ReceiveQuery;
+
+        public static void OnReceiveQuery(Query query)
+        {
+            var handler = ReceiveQuery;
+            if (handler != null)
+                handler(null, new QueryEventArgs {Query = query});
+        }
+
+        public static event EventHandler<QueryEventArgs> QueryRecieved;
+
+        public static void OnQueryRecieved(Query query)
+        {
+            Debug.Log("Query received event triggered.");
+            var handler = QueryRecieved;
+            if (handler != null)
+                handler(null, new QueryEventArgs {Query = query});
+        }
+
+        public static event EventHandler<NotificationEventArgs>
+            NotificationRecieved;
+
+        public static void OnNotificationRecieved(NotificationEventArgs e)
+        {
+            var handler = NotificationRecieved;
+            //if (handler != null) handler(null, new NotificationEventArgs { Notification = new Notification(e) });
+            if (handler != null) handler(null, e);
+        }
+
+        public static event EventHandler<EventArgs> ConnectSocket;
+
+        public static void OnConnectSocket()
+        {
+            var handler = ConnectSocket;
+            if (handler != null) handler(null, EventArgs.Empty);
+        }
+
+        public static event EventHandler<EventArgs> SocketConnected;
+
+        public static void OnSocketConnected()
+        {
+            var handler = SocketConnected;
+            if (handler != null) handler(null, EventArgs.Empty);
+        }
+
+        public static event EventHandler<EventArgs> DisconnectSocket;
+
+        public static void OnDisconnectSocket()
+        {
+            var handler = DisconnectSocket;
+            if (handler != null) handler(null, EventArgs.Empty);
+        }
+
+        public static event EventHandler<EventArgs> SocketDisconnected;
+
+        public static void OnSocketDisconnected()
+        {
+            var handler = SocketDisconnected;
+            if (handler != null) handler(null, EventArgs.Empty);
+        }
+    }
+}
