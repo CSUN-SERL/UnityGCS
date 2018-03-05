@@ -105,6 +105,22 @@ namespace Networking
                     //SocketEventManager.OnNotificationRecieved(new NotificationEventArgs { Notification = new Notification(data.ToString()) });
                     Debug.Log("Notification Event Reveicved.");
                 });
+
+                // gcs-automated-query means that a query was handled autonomously by IRIS.
+                socket.On("gcs-automated-query", data =>
+                {
+                    QueryCounters.OnIncrementCount();
+                    Debug.Log("Handled query autonomously");
+                    //Debug.Log(data);
+                });
+
+                // iris-generated-query means that a query was generated, data contains the robotID
+                socket.On("gcs-generated-query", data =>
+                {
+                    QueryIndicator.OnQueryGenerated();
+                    Debug.Log("A query was generated.");
+                });
+
             }
         }
 

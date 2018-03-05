@@ -62,7 +62,7 @@ namespace LiveFeedScreen.E2SHPackage_Scripts
                 // Check shit
                 if (www.error != null)
                 {
-                    Debug.Log(www.error);
+                    //Debug.Log(www.error);
                     continue;
                 }
 
