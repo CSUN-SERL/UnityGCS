@@ -4,7 +4,7 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
-Assets/Tobii
+Assets/Tobii/
 Assets/Tobii.meta
 Tobii.GameIntegration.dll
 
