@@ -4,6 +4,9 @@
 [Bb]uild/
 [Bb]uilds/
 Assets/AssetStoreTools*
+Assets/Tobii
+Assets/Tobii.meta
+Tobii.GameIntegration.dll
 
 # Visual Studio 2015 cache directory
 /.vs/
