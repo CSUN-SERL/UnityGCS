@@ -1,7 +1,9 @@
 ﻿using FeedScreen.Experiment.Missions.Broadcasts.Events;
 using LiveFeedScreen.ROSBridgeLib;
 using LiveFeedScreen.ROSBridgeLib.geometry_msgs.geometry_msgs;
+using LiveFeedScreen.ROSBridgeLib.std_msgs.std_msgs;
 using UnityEngine;
+
 
 namespace Missions.ManualControl
 {
@@ -109,6 +111,9 @@ namespace Missions.ManualControl
 
                 // Publishes the TwistMsg values over to the /cmd_vel topic in ROS.
                 _ros.Publish("/cmd_vel", msg);
+
+                /*var msg2 = new Int32Msg(2);
+                _ros.Publish("/int", msg2);*/
 
                 _ros.Publish(FinalTopic,
                     msg); /////////\\\\\\\\\\ this is for testing of the 4 bots 

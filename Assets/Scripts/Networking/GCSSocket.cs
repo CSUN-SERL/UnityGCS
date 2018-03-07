@@ -117,8 +117,8 @@ namespace Networking
                 // iris-generated-query means that a query was generated, data contains the robotID
                 socket.On("gcs-generated-query", data =>
                 {
-                    QueryIndicator.OnQueryGenerated();
                     Debug.Log("A query was generated.");
+                    SocketEventManager.OnQueryGenerated(new int());
                 });
 
             }

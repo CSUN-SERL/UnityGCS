@@ -1,6 +1,11 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using FeedScreen.Experiment.Missions.Broadcasts.Events;
+using JetBrains.Annotations;
+using Missions;
+using Missions.Endpoint;
+using Networking;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -20,16 +25,29 @@ public class QueryIndicator : MonoBehaviour {
     // use this thingamabob to start and stop the query indicator.
     private static bool _noticeMeSenpai = false;
 
-    // Event to keep track of when we receive notification that
-    // a query was generated, from the GCSSocket
-    public static event EventHandler<EventArgs> QueryGenerated;
-
-
     void Start()
     {
         ImageToToggle.enabled = DefaultState;
         TextToToggle.enabled = DefaultState;
         // StartBlink();
+    }
+
+
+    private void OnEnable()
+    {
+        SocketEventManager.QueryGenerated += OnQueryGenerated;
+    }
+
+    private void OnDisable()
+    {
+        SocketEventManager.QueryGenerated -= OnQueryGenerated;
+    }
+
+    public void OnQueryGenerated(object sender, IntEventArgs e)
+    {
+        var data = e.ToString();
+        Debug.Log("Made it to QueryIndicator.cs" + data);
+        _noticeMeSenpai = true;
     }
 
     void Update()
@@ -69,13 +87,5 @@ public class QueryIndicator : MonoBehaviour {
             numBlinks = 4;
             CancelInvoke("ToggleState");
         }
-    }
-
-    // when we get this event toggle bool on to start blink in Update
-    // and then update turns it off
-    public static void OnQueryGenerated()
-    {
-        //Debug.Log("A query was generated.");
-        _noticeMeSenpai = true;
     }
 }

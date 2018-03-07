@@ -35,8 +35,7 @@ namespace Missions.Endpoint
                 handler(null, new QueryEventArgs {Query = query});
         }
 
-        public static event EventHandler<NotificationEventArgs>
-            NotificationRecieved;
+        public static event EventHandler<NotificationEventArgs> NotificationRecieved;
 
         public static void OnNotificationRecieved(NotificationEventArgs e)
         {
@@ -75,6 +74,16 @@ namespace Missions.Endpoint
         {
             var handler = SocketDisconnected;
             if (handler != null) handler(null, EventArgs.Empty);
+        }
+
+        // Handle Query Generated Event.  Used in QueryIndicator to make stuff flash.
+        public static event EventHandler<IntEventArgs> QueryGenerated;
+     
+        public static void OnQueryGenerated(int data)
+        {
+            var handler = QueryGenerated;
+            //if (handler != null) handler(null, EventArgs.Empty as IntEventArgs);
+            Debug.Log("Triggered." + handler);
         }
     }
 }
