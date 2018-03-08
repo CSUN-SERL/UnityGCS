@@ -76,14 +76,16 @@ namespace Missions.Endpoint
             if (handler != null) handler(null, EventArgs.Empty);
         }
 
+
+        public delegate void SocketEvent<T>(T obj, EventArgs args);
         // Handle Query Generated Event.  Used in QueryIndicator to make stuff flash.
-        public static event EventHandler<IntEventArgs> QueryGenerated;
+        public static event SocketEvent<string> QueryGenerated;
      
-        public static void OnQueryGenerated(int data)
+        public static void OnQueryGenerated(string data)
         {
-            var handler = QueryGenerated;
-            //if (handler != null) handler(null, EventArgs.Empty as IntEventArgs);
-            Debug.Log("Triggered." + handler);
+            if (QueryGenerated != null)
+                QueryGenerated.Invoke(data, EventArgs.Empty);
+            Debug.Log("Triggered: OnQueryGenerated " + data);
         }
     }
 }
