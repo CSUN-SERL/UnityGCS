@@ -249,9 +249,22 @@ namespace ROSBridgeLib {
 			if(_ws != null) {
 				string s = ROSBridgeMsg.Publish (topic, msg.ToYAMLString ());
 				//Debug.Log ("Sending " + s);
+                Debug.Log(s);
+
 				_ws.Send (s);
 			}
 		}
+
+        //Created by Miguel Sanchez
+        public void Advertise(String topic, string msgType){
+            if (_ws != null)
+            {
+                string s = ROSBridgeMsg.Advertise(topic, msgType);
+                Debug.Log(s);
+
+                _ws.Send(s);
+            }
+        }
 
 		public void CallService(string service, string args) {
 			if (_ws != null) {

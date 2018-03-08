@@ -24,28 +24,32 @@ public class GetImage : MonoBehaviour {
 	void Update ()
 	{
 		// Calls the funtion GetTexture to grab the Husky image.
-		StartCoroutine((GetTexture()));
+		//StartCoroutine((GetTexture()));
 	}
 	
 	// Handles getting. 
 	IEnumerator GetTexture()
 	{
-		// Instantiate a Texture2D, and gives the 
-		// dimensions and format of the texture.
-		var tex = new Texture2D(4, 4, TextureFormat.DXT1, false);;
-		
-		// A WWW instance is given access to a website, in this case the link to the ROSbridge 
-		// video_websocket_server image.
-		var www = new WWW(Url);
-		
-		// Pause/wait for the site to respond with the image
-		yield return www;
-		
-		//Loads the ROSbridge video_websocket_server husky image into the Textture2D 'tex'
-		www.LoadImageIntoTexture(tex);
-		
-		// Grabs the image loaded in 'tex' and renders it for visualization in the Unity GameObject that 
-		// the script is attached to. (allows for visualization)
-		GetComponent<Renderer>().material.mainTexture = tex;
+		while (true)
+		{
+			// Instantiate a Texture2D, and gives the 
+			// dimensions and format of the texture.
+			var tex = new Texture2D(4, 4, TextureFormat.DXT1, false);
+			;
+
+			// A WWW instance is given access to a website, in this case the link to the ROSbridge 
+			// video_websocket_server image.
+			var www = new WWW(Url);
+
+			// Pause/wait for the site to respond with the image
+			yield return www;
+
+			//Loads the ROSbridge video_websocket_server husky image into the Textture2D 'tex'
+			www.LoadImageIntoTexture(tex);
+
+			// Grabs the image loaded in 'tex' and renders it for visualization in the Unity GameObject that 
+			// the script is attached to. (allows for visualization)
+			GetComponent<Renderer>().material.mainTexture = tex;
+		}
 	}
 }

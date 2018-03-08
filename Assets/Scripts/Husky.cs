@@ -7,7 +7,10 @@
 using UnityEngine;
 using ROSBridgeLib;
 using ROSBridgeLib.geometry_msgs;
+using ROSBridgeLib.std_msgs;
 using UnityEngine.UI;
+using System.Threading;
+using System;
 
 public class Husky : MonoBehaviour  {
 	private ROSBridgeWebSocketConnection _ros = null;	
@@ -32,19 +35,22 @@ public class Husky : MonoBehaviour  {
 	// The critical thing here is to define our subscribers, publishers and service response handlers.
 	void Start ()
 	{
+        
 		_useJoysticks = Input.GetJoystickNames ().Length > 0;
 		
 		// ros will be a node with said connection below... To our AWS server.
-		_ros = new ROSBridgeWebSocketConnection (_station4, 9090); 
-		_ros1 = new ROSBridgeWebSocketConnection (_station1, 9090); 
-		_ros4 = new ROSBridgeWebSocketConnection (_station4, 9090); 
+        _ros = new ROSBridgeWebSocketConnection (_station1, 9090);
+        //_ros1 = new ROSBridgeWebSocketConnection (_station1, 9090); 
+        //_ros4 = new ROSBridgeWebSocketConnection (_station4, 9090);
 
-
+        _ros.AddPublisher(typeof(CoffeePublisher));
 
 		// Gives a live connection to ROS via ROSBridge.
 		_ros.Connect ();
-		_ros1.Connect ();	
-		_ros4.Connect ();
+		//_ros1.Connect ();	
+		//_ros4.Connect ();
+        //Thread.Sleep(3000);
+        //_ros.Advertise("coffee", StringMsg.GetMessageType());
 
 
 	}
@@ -87,18 +93,32 @@ public class Husky : MonoBehaviour  {
 		// bot on the ground.
 		var msg = new TwistMsg(new Vector3Msg(linear, 0.0, 0.0), new Vector3Msg(0.0, 0.0, angular));
 		_topic = "";
-		ActiveToggle();				///////\\\\\\\\\ Need to call func to get appropriate topic 
-									// name for the correct selected bot. This is for testing of 
-									// the 4 bot environment!!!!!!
-		
-		// Publishes the TwistMsg values over to the /cmd_vel topic in ROS.
-		//_ros.Publish("/cmd_vel", msg);
-		
-		_ros.Publish(_topic, msg);	/////////\\\\\\\\\\ this is for testing of the 4 bots 
+		ActiveToggle();             ///////\\\\\\\\\ Need to call func to get appropriate topic 
+                                    // name for the correct selected bot. This is for testing of 
+                                    // the 4 bot environment!!!!!!
+
+        // Publishes the TwistMsg values over to the /cmd_vel topic in ROS.
+        //_ros.Publish("/cmd_vel", msg);
+
+        //string STR;
+        //STR = ROSBridgeMsg.Advertise("/coffee", "std_msgs/String");
+        //        Debug.Log(STR);
+        //var str = new StringMsg("hello Miguel");
+
+        var str = new StringMsg("Hello Miguel");
+        Debug.Log(str);
+        _ros.Publish("/coffee", str);
+
+
+
+
+        //_ros.Publish(_topic, msg);
+
+		//_ros.Publish("/robot1/cmd_vel", msg);	/////////\\\\\\\\\\ this is for testing of the 4 bots 
 									// environment!!!	
 
 		_ros.Render ();
-
+       
 	}
 
 	void ActiveToggle()
@@ -106,22 +126,22 @@ public class Husky : MonoBehaviour  {
 		if (Isbot1.isOn)
 		{
 			_topic = "/robot1/cmd_vel";
-			_ros = _ros4;
+			//_ros = _ros1;
 		}
 		if (Isbot2.isOn)
 		{
 			_topic = "/robot2/cmd_vel";
-			_ros = _ros4;
+			//_ros = _ros1;
 		}
 		if (Isbot3.isOn)
 		{
 			_topic = "/robot3/cmd_vel";
-			_ros = _ros1;
+			//_ros = _ros1;
 		}
 		if (Isbot4.isOn)
 		{
 			_topic = "/robot4/cmd_vel";
-			_ros = _ros1;
+			//_ros = _ros1;
 		}
 
 

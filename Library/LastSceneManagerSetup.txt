@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/scene5.unity
+- path: Assets/E2SH_Screen_1.0.unity
   isLoaded: 1
   isActive: 1
