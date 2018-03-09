@@ -1,6 +1,6 @@
 /Assets/AudioStream/*
 /Assets/AudioStream.meta
-<<<<<<< HEAD
+
 .DS_store
 =======
 /.idea
@@ -40,6 +40,3 @@ sysinfo.txt
 # Builds
 *.apk
 *.unitypackage
->>>>>>> 62e4a0aad9b7c9c3c478071690e1b98d2b6d9100
-
-Library/
