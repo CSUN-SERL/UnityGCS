@@ -1,7 +1,7 @@
 ﻿<Properties StartupConfiguration="{1D4DAE77-F820-E27B-9043-C7455B91CED8}|">
   <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Husky.cs">
     <Files>
-      <File FileName="Assets/Scripts/Husky.cs" Line="46" Column="40" />
+      <File FileName="Assets/Scripts/Husky.cs" Line="46" Column="26" />
       <File FileName="Assets/ROSBridgeLib/ROSBridgeWebSocketConnection.cs" Line="105" Column="34" />
       <File FileName="Assets/Plugins/Editor/FMOD/EventManager.cs" Line="552" Column="1" />
       <File FileName="Assets/Scripts/CoffeePublisher.cs" Line="5" Column="2" />
