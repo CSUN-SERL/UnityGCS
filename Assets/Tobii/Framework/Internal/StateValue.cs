@@ -79,7 +79,7 @@ namespace Tobii.Framework.Internal
 }
 
 #else
-using Tobii.Gaming.Stubs;
+
 namespace Tobii.Gaming.Internal
 {
 	internal sealed class StateValue<T> : StateValueStub<T>

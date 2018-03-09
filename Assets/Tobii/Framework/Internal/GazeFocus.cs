@@ -252,7 +252,7 @@ namespace Assets.Tobii.Framework.Internal
 #else
 using System.Collections.Generic;
 using UnityEngine;
-using Tobii.Gaming.Stubs;
+
 namespace Tobii.Gaming.Internal
 {
     public class GazeFocus : GazeFocusStub

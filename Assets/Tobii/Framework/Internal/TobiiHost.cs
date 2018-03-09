@@ -221,7 +221,7 @@ namespace Assets.Tobii.Framework.Internal
 }
 
 #else
-using Tobii.Gaming.Stubs;
+
 
 namespace Tobii.Gaming.Internal
 {
