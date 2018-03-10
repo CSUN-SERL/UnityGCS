@@ -4,20 +4,23 @@
 
 using UnityEngine;
 
-public class DisplayScript : MonoBehaviour
+namespace LiveFeedScreen.E2SHPackage_Scripts
 {
-    void Start()
+    public class DisplayScript : MonoBehaviour
     {
-        // Display.displays[0] is the primary, default display and is always ON.
-        // Check if additional displays are available and activate each.
-        Debug.Log("displays connected: " + Display.displays.Length);
-        
-        // This checks to see if there is a second display, and activates it.
-        if ( Display.displays.Length > 1)
-            Display.displays[1].Activate();
-        
-        // This checks to see if there is a thrid display and will activate that one if it exists.
-        if ( Display.displays.Length > 2)
-            Display.displays[2].Activate();
+        private void Start()
+        {
+            // Display.displays[0] is the primary, default display and is always ON.
+            // Check if additional displays are available and activate each.
+            Debug.Log("displays connected: " + Display.displays.Length);
+
+            // This checks to see if there is a second display, and activates it.
+            if (Display.displays.Length > 1)
+                Display.displays[1].Activate();
+
+            // This checks to see if there is a thrid display and will activate that one if it exists.
+            if (Display.displays.Length > 2)
+                Display.displays[2].Activate();
+        }
     }
 }
